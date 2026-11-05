@@ -1,77 +1,9 @@
-class Kendaraan:
-    def __init__(self, kode, seri, tahun, brand, tipe_bahan_bakar, status_bekas, harga):
-        self.kode = kode
-        self.seri = seri
-        self.tahun = tahun
-        self.brand = brand
-        self.tipe_bahan_bakar = tipe_bahan_bakar
-        self.status_bekas = status_bekas
-        self.harga = harga
-
-    def info(self):
-        kondisi = "Bekas" if self.status_bekas else "Baru"
-        return f"{self.kode} - {self.brand} {self.seri} ({self.tahun}) | Bahan bakar: {self.tipe_bahan_bakar} | Kondisi: {kondisi} | Harga: Rp{self.harga:,}"
-
-    def harga_jual(self):
-        return self.harga
-
-
-class Dealer:
-    def __init__(self, nama, stok=None):
-        self.nama = nama
-        self.stok = list(stok or [])
-
-    def total_kendaraan(self):
-        return len(self.stok)
-
-    def nama_garasi(self):
-        return self.nama
-
-    def tambah_kendaraan(self, kendaraan):
-        self.stok.append(kendaraan)
-
-
-class Pelanggan:
-    def __init__(self, nama, kontak):
-        self.nama = nama
-        self.kontak = kontak
-
-    def info(self):
-        return f"Nama: {self.nama} | Kontak: {self.kontak}"
-
-
-class ItemTransaksi:
-    def __init__(self, kendaraan, jumlah):
-        self.kendaraan = kendaraan
-        self.jumlah = jumlah
-
-    def info(self):
-        return f"{self.kendaraan.info()} | Jumlah: {self.jumlah} | Subtotal: Rp{self.subtotal():,}"
-
-    def subtotal(self):
-        return self.kendaraan.harga_jual() * self.jumlah
-
-
-class Transaksi:
-    def __init__(self, kode, tanggal, pelanggan, dealer, daftar_item=None):
-        self.kode = kode
-        self.tanggal = tanggal
-        self.pelanggan = pelanggan
-        self.dealer = dealer
-        self.daftar_item = list(daftar_item or [])
-
-    def info(self):
-        detail_item = "\n".join(item.info() for item in self.daftar_item)
-        return f"Transaksi: {self.kode} | Tanggal: {self.tanggal} | Pelanggan: {self.pelanggan.nama} | Dealer: {self.dealer.nama} | Total: Rp{self.total_harga():,}\n{detail_item}"
-
-    def total_harga(self):
-        return sum(item.subtotal() for item in self.daftar_item)
-
-    def tambah_item(self, item):
-        self.daftar_item.append(item)
-
-
+from .kendaraan import Kendaraan
 from .mobil import Mobil
 from .motor import Motor
+from .transaksi import Transaksi
+from .item_transaksi import ItemTransaksi
+from .dealer import Dealer
+from .pelanggan import Pelanggan
 
 __all__ = ["Kendaraan", "Dealer", "Pelanggan", "ItemTransaksi", "Transaksi", "Mobil", "Motor"]

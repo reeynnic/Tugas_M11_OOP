@@ -1,8 +1,16 @@
 from . import Kendaraan
 
 class Motor(Kendaraan):
-    def info(self):
-        return f"Motor | {super().info()}"
+  pajak = 0.2
 
-    def harga_jual(self):
-        return super().harga_jual()
+  def info(self):
+    return f"Motor | {super().info()}"
+
+  def harga_jual(self):
+    potongan_harga = 0
+
+    if self.status_bekas:
+        potongan_harga = 0.4
+
+    return self.harga * potongan_harga / self.pajak
+
