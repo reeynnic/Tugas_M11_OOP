@@ -1,4 +1,3 @@
-
 class Kendaraan:
     def __init__(self, kode: str, seri: str, tahun: int, brand: str, tipe_bahan_bakar: str, status_bekas: bool, harga: int):
         self.kode = kode
