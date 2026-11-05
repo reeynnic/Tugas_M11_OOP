@@ -1,6 +1,5 @@
 from . import Kendaraan
 
-
 class Mobil(Kendaraan):
     def __init__(self, kode, seri, tahun, brand, tipe_bahan_bakar, status_bekas, harga, jumlah_kursi):
         super().__init__(kode, seri, tahun, brand, tipe_bahan_bakar, status_bekas, harga)
