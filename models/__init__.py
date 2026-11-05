@@ -1,5 +1,5 @@
 class Kendaraan:
-    def __init__(self, kode: str, seri: str, tahun: int, brand: str, tipe_bahan_bakar: str, status_bekas: bool, harga: int):
+    def __init__(self, kode, seri, tahun, brand, tipe_bahan_bakar, status_bekas, harga):
         self.kode = kode
         self.seri = seri
         self.tahun = tahun
@@ -17,7 +17,7 @@ class Kendaraan:
 
 
 class Dealer:
-    def __init__(self, nama: str, stok=None):
+    def __init__(self, nama, stok=None):
         self.nama = nama
         self.stok = list(stok or [])
 
@@ -27,12 +27,12 @@ class Dealer:
     def nama_garasi(self):
         return self.nama
 
-    def tambah_kendaraan(self, kendaraan: Kendaraan):
+    def tambah_kendaraan(self, kendaraan):
         self.stok.append(kendaraan)
 
 
 class Pelanggan:
-    def __init__(self, nama: str, kontak: str):
+    def __init__(self, nama, kontak):
         self.nama = nama
         self.kontak = kontak
 
@@ -41,7 +41,7 @@ class Pelanggan:
 
 
 class ItemTransaksi:
-    def __init__(self, kendaraan: Kendaraan, jumlah: int):
+    def __init__(self, kendaraan, jumlah):
         self.kendaraan = kendaraan
         self.jumlah = jumlah
 
@@ -53,7 +53,7 @@ class ItemTransaksi:
 
 
 class Transaksi:
-    def __init__(self, kode: str, tanggal: int, pelanggan: Pelanggan, dealer: Dealer, daftar_item=None):
+    def __init__(self, kode, tanggal, pelanggan, dealer, daftar_item=None):
         self.kode = kode
         self.tanggal = tanggal
         self.pelanggan = pelanggan
@@ -67,7 +67,7 @@ class Transaksi:
     def total_harga(self):
         return sum(item.subtotal() for item in self.daftar_item)
 
-    def tambah_item(self, item: ItemTransaksi):
+    def tambah_item(self, item):
         self.daftar_item.append(item)
 
 
